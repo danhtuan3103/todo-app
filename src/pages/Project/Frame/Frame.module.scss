@@ -1,0 +1,336 @@
+.frame {
+    width: 300px;
+    max-height: 500px;
+    background-color: #e4423211;
+    padding-bottom: 8px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s ease-in-out;
+}
+
+.header {
+    padding: 16px 24px;
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
+}
+.title {
+    flex: 1;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.number {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e44232;
+    font-size: 1.6rem;
+    border-radius: 8px;
+    background-color: #e4423266;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: #e4423288;
+    }
+}
+.plus {
+    margin: 0px 24px 4px 24px;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #e44232;
+    border-radius: 6px;
+    background-color: #e4423222;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+        background-color: #e4423266;
+    }
+}
+.project-wrapper {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 4px 24px;
+    height: 80%;
+    overflow-y: overlay;
+    border-radius: 8px;
+}
+
+// ------ Overlay ------
+
+.seeall-overlay {
+    background-color: rgb(34, 31, 31, 0.9);
+    flex-direction: column;
+    justify-content: flex-start !important;
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+
+    .container-overlay {
+        padding-left: 32px;
+        padding-bottom: 52px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: start;
+        overflow-y: auto;
+    }
+    .card {
+        width: 270px;
+        height: 250px;
+        margin-right: 16px;
+        height: 300px;
+    }
+
+    .card:last-child {
+        margin-bottom: 32px;
+    }
+}
+
+.close-block {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.close-btn {
+    font-size: 3.4rem;
+    padding: 0px 8px;
+    font-weight: bold;
+    background-color: transparent;
+    color: var(--white);
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+@-webkit-keyframes zoom {
+    from {
+        -webkit-transform: scale(0);
+    }
+    to {
+        -webkit-transform: scale(1);
+    }
+}
+@keyframes zoom {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+// ----- Add Box --------
+
+.addbox-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(49, 46, 46, 0.2);
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.4s;
+    animation-name: zoom;
+    animation-duration: 0.4s;
+    overflow-y: auto;
+    display: flex;
+}
+
+.create-wrapper {
+    width: 600px;
+    height: 500px;
+    background-color: #333;
+    position: relative;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: var(--white);
+    overflow: hidden;
+
+    .close-btn {
+        font-size: 2.8rem;
+    }
+}
+
+.content {
+    height: 100%;
+    padding: 0px 16px;
+    color: rgb(144, 144, 144);
+    overflow: auto;
+}
+.content-header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    h3 {
+        font-weight: 400;
+        color: var(--white);
+    }
+
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 8px;
+        font-size: 2.4rem;
+        color: var(--white);
+    }
+}
+.content-input {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+
+    * {
+        margin: 8px 0;
+    }
+}
+
+.text-input {
+    font-size: 2rem;
+    padding: 4px 0;
+    background-color: transparent;
+    border-bottom: 1px solid var(--white);
+    color: inherit;
+
+    &:not(:placeholder-shown) {
+        color: var(--main-color);
+    }
+}
+
+.input-block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.color-input {
+    margin: 0;
+    width: 80px;
+    height: 35px;
+    // height: 30px;
+    border-radius: 4px;
+    border: 1px solid #e4423299;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.color-input::-webkit-color-swatch {
+    border-radius: 4px;
+    border: none;
+}
+
+.color-input::-moz-color-swatch {
+    border-radius: 4px;
+    border: none;
+}
+
+.time-input,
+.date-input {
+    margin: 0 8px;
+    font-size: 1.6rem;
+    padding: 0 8px;
+    border-radius: 8px;
+}
+.desc {
+    font-size: 1.6rem;
+    height: 250px;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    border: 1px solid transparent;
+
+    &:focus {
+        border-color: var(--main-color);
+    }
+}
+.btn-block {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: inherit;
+    background-color: #111;
+    width: 100%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.btn {
+    min-width: 70px;
+    margin-bottom: 0;
+    background-color: var(--main-color);
+    border: none;
+    font-size: 1.4rem;
+    width: 0px;
+    height: 35px;
+    color: inherit;
+}
+
+.btn.btn-cancel {
+    background-color: #333;
+    &:hover {
+        opacity: 0.6;
+    }
+}
+.btn.btn-create {
+    color: var(--white);
+    margin-right: 16px;
+
+    &:hover {
+        background-color: var(--main-color);
+        opacity: 0.6;
+    }
+}
+
+// ---- Responsive -------
+
+@media (max-width: 1024px) {
+    .frame {
+        margin-right: 16px;
+    }
+}
+
+@media (max-width: 739px) {
+    .frame {
+        height: 300px;
+        margin-right: 16px;
+    }
+
+    .seeall-overlay {
+        justify-content: center;
+
+        .container-overlay {
+            justify-content: center;
+        }
+    }
+}
+
+@media (max-width: 390px) {
+    .seeall-overlay {
+        .container-overlay {
+            padding-bottom: 32px;
+        }
+    }
+    .seeall-overlay {
+        .close-btn {
+            font-size: 2.8rem;
+        }
+    }
+
+    .create-wrapper {
+        width: 100%;
+    }
+}

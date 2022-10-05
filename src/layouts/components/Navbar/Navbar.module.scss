@@ -1,0 +1,115 @@
+.wrapper {
+    height: 50px;
+    padding: 0 16px;
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 11;
+}
+
+.right-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon {
+    margin-right: 8px;
+    padding: 4px 8px;
+    font-size: 2.3rem;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.25s ease-in-out;
+
+    &:hover {
+        background-color: #ffffff33;
+    }
+}
+
+.search {
+    padding: 4px 8px;
+    height: 28px;
+    width: 200px;
+    background-color: #ffffff33;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease-in-out;
+
+    .icon {
+        font-size: 2rem;
+        padding: 0;
+        margin-right: 4px;
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+    .input {
+        width: 100%;
+        flex: 1;
+        background-color: var(--white);
+        padding: 4px 8px;
+        background-color: transparent;
+        color: var(--white);
+        outline: none;
+    }
+
+    &:focus-within {
+        width: 300px;
+        background-color: #fff;
+
+        .icon,
+        .input {
+            color: black;
+        }
+    }
+}
+
+.left-block {
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar {
+    width: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+    .search {
+        display: none;
+    }
+}
+
+@media (max-width: 510px) {
+    .icon:nth-child(2) {
+        display: none;
+    }
+
+    .left-block {
+        flex-direction: row-reverse;
+        .icon {
+            margin-right: -8px;
+        }
+
+        .avatar {
+            display: none;
+        }
+    }
+}

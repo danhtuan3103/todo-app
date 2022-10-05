@@ -1,0 +1,116 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap');
+
+:root {
+    --primary: #e44232;
+    --white: white;
+    --color-text: #3a2f2f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: Montserrat;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizespeed;
+}
+
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
+}
+
+a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(45deg, rgb(241, 118, 225), rgb(172, 189, 236), rgb(77, 211, 238));
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        top: 3%;
+        left: 3%;
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+        opacity: 0.5;
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        bottom: -10%;
+        right: -7%;
+        height: 500px;
+        width: 500px;
+        border-radius: 50%;
+        background-color: black;
+        background: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+        opacity: 0.5;
+    }
+}
+
+.container {
+    width: 1250px;
+    height: 90vh;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(7px);
+    background-color: rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    z-index: 2;
+}
+
+@media (max-width: 739px) {
+    .container {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+@media (max-width: 510px) {
+    .container {
+        height: 98vh;
+    }
+}
+
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(22, 24, 35, 0.06);
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}

@@ -1,0 +1,50 @@
+.wrapper {
+    --main-color: #e44232;
+    width: 100%;
+    height: inherit;
+    height: 100%;
+}
+
+.body {
+    height: inherit;
+    display: flex;
+    background-color: var(--white);
+}
+
+.icon {
+    font-size: 2rem;
+    margin-right: 8px;
+}
+
+.btn {
+    width: 100%;
+    margin: 0;
+    border-color: transparent;
+    text-align: start;
+}
+.content {
+    height: 94vh;
+    padding: 0px 32px;
+    flex: 1;
+    margin-top: 50px;
+    transition: 0.3s;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(49, 45, 45, 0.3);
+    justify-content: start;
+    align-items: start;
+    height: 100%;
+}
+
+@media (max-width: 510px) {
+    .content {
+        overflow: auto;
+    }
+}

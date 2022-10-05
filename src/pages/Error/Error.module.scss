@@ -1,0 +1,30 @@
+.wrapper {
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .btn {
+        background-color: #189ef1;
+        font-size: 1.4rem;
+        width: 280px;
+    }
+}
+.title {
+    color: var(--white);
+    font-weight: bold;
+    font-size: 4rem;
+    padding: 16px 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.img {
+    width: 500px;
+}
+
+@media (max-width: 510px) {
+    .img {
+        width: 400px;
+    }
+}
