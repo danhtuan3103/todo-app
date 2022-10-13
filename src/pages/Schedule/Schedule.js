@@ -4,39 +4,99 @@ import styles from './Schedule.module.scss';
 
 const cx = classNames.bind(styles);
 const schelude = {
-    mon: ['', '', '', '', '', '알고리즘 최지웅 15:00-16:15 정보과학관_21304', '', ''],
+    mon: [
+        {
+            name: '알고리즘',
+            professor: '최지웅',
+            time: '15:00-16:15',
+            address: ' 정보과학관_21304',
+            start: 6,
+            end: 7,
+            color: '#fafaa3',
+        },
+    ],
     tues: [
-        '',
-        '',
-        '학문목적한국어4 장지영 10:30-11:45 진리관_11114',
-        '',
-        '',
-        '데이터통신과네트워크 조효진 15:00-16:15 정보과학관_21304',
-        '',
-        '',
+        {
+            name: '학문목적한국어4',
+            professor: '장지영',
+            time: '10:30-11:45',
+            address: '진리관_11114',
+            start: 3,
+            end: 4,
+            color: '#fff1f8',
+        },
+
+        {
+            name: '데이터통신과네트워크',
+            professor: '조효진',
+            time: '15:00-16:15',
+            address: '정보과학관_21304',
+            start: 6,
+            end: 7,
+            color: '#fafaa3',
+        },
     ],
-    wed: ['', '', '', '', '', '윈도우프로그래밍및실습 이근정 16:00-16:50 정보과학관_21101', '', ''],
+    wed: [
+        {
+            name: '윈도우프로그래밍및실습',
+            professor: '이근정',
+            time: '16:00-17:50',
+            address: '정보과학관_21101',
+            start: 6,
+            end: 8,
+            color: '#d1ffe6',
+        },
+    ],
     thur: [
-        '',
-        '생명정보과학 공현승 09:00-10:15 정보과학관_21204 ',
-        '',
-        '',
-        '',
-        '채플 정대경 15:00-15:50 한경직기념관_08110',
-        '고급컴퓨터수 최형광 16:30-17:45 정보과학관_21305',
-        '',
+        {
+            name: '생명정보과학',
+            professor: '공현승',
+            time: '09:00-10:15',
+            address: '정보과학관_21204',
+            start: 2,
+            end: 3,
+            color: '#fff1f8',
+        },
+        {
+            name: '채플',
+            professor: '정대경',
+            time: '15:00-15:50',
+            address: '한경직기념관_08110',
+            start: 6,
+            end: 7,
+            color: '#e2f8ff',
+        },
+        {
+            name: '고급컴퓨터수',
+            professor: '최형광',
+            time: '16:30-17:45',
+            address: '정보과학관_21305',
+            start: 7,
+            end: 9,
+            color: '#fff1f8',
+        },
     ],
-    fri: ['', '', '학문목적한국어4 장지영 10:30-11:45 진리관_11114', '', '', '', '', ''],
+    fri: [
+        {
+            name: '학문목적한국어4',
+            professor: '장지영',
+            time: '10:30-11:45',
+            address: '진리관_11114',
+            start: 3,
+            end: 4,
+            color: '#e2f8ff',
+        },
+    ],
 };
 
 function Schedule() {
-    const [content, setContent] = useState('');
+    const [content, setContent] = useState(null);
 
+    console.log(content);
     const handleClick = (e) => {
         setContent(e.target.textContent);
     };
 
-    const text = content.split(' ');
     return (
         <div className={cx('wrapper')}>
             <h2 className={cx('title')}>SCHOOL TIMETABLE</h2>
@@ -51,65 +111,131 @@ function Schedule() {
             <div className={cx('timetable')}>
                 <div className={cx('time')}>
                     <h4>Time</h4>
-                    <p>08:00~08:50</p>
-                    <p>09:00~10:15</p>
-                    <p>10:30~11:45</p>
-                    <p>12:00~13:15</p>
-                    <p>13:30~14:45</p>
-                    <p>15:00~16:15</p>
-                    <p>16:30~17:45</p>
-                    <p>18:00~19:15</p>
+                    <div className={cx('events')}>
+                        <p>08:00~08:50</p>
+                        <p>09:00~10:15</p>
+                        <p>10:30~11:45</p>
+                        <p>12:00~13:15</p>
+                        <p>13:30~14:45</p>
+                        <p>15:00~16:15</p>
+                        <p>16:30~17:45</p>
+                        <p>18:00~19:15</p>
+                    </div>
                 </div>
                 <div className={cx('day')}>
                     <h4>Monday</h4>
-                    {schelude.mon.map((time, index) => {
-                        return (
-                            <p key={index} onClick={handleClick}>
-                                {time}
-                            </p>
-                        );
-                    })}
+                    <div className={cx('events')}>
+                        {schelude.mon.map((event, index) => {
+                            return (
+                                <div
+                                    key={index}
+                                    className={cx('event', `start-${event.start}`, `end-${event.end}`)}
+                                    onClick={() => setContent(event)}
+                                    style={{ backgroundColor: event.color }}
+                                >
+                                    <h5>
+                                        {event.name} - <span>{event.professor}</span>
+                                    </h5>
+
+                                    <p>
+                                        {event.time} {event.address}
+                                    </p>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
                 <div className={cx('day')}>
                     <h4>Tuesday</h4>
+                    <div className={cx('events')}>
+                        {schelude.tues.map((event, index) => {
+                            return (
+                                <div
+                                    key={index}
+                                    style={{ backgroundColor: event.color }}
+                                    onClick={() => setContent(event)}
+                                    className={cx('event', `start-${event.start}`, `end-${event.end}`)}
+                                >
+                                    <h5>
+                                        {event.name} - <span>{event.professor}</span>
+                                    </h5>
 
-                    {schelude.tues.map((time, index) => {
-                        return (
-                            <p key={index} onClick={handleClick}>
-                                {time}
-                            </p>
-                        );
-                    })}
+                                    <p>
+                                        {event.time} {event.address}
+                                    </p>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
                 <div className={cx('day')}>
                     <h4>Wednesday</h4>
-                    {schelude.wed.map((time, index) => {
-                        return (
-                            <p key={index} onClick={handleClick}>
-                                {time}
-                            </p>
-                        );
-                    })}
+                    <div className={cx('events')}>
+                        {schelude.wed.map((event, index) => {
+                            return (
+                                <div
+                                    key={index}
+                                    onClick={() => setContent(event)}
+                                    style={{ backgroundColor: event.color }}
+                                    className={cx('event', `start-${event.start}`, `end-${event.end}`)}
+                                >
+                                    <h5>
+                                        {event.name} - <span>{event.professor}</span>
+                                    </h5>
+
+                                    <p>
+                                        {event.time} {event.address}
+                                    </p>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
                 <div className={cx('day')}>
                     <h4>Thursday</h4>
-                    {schelude.thur.map((time, index) => {
-                        return (
-                            <p key={index} onClick={handleClick}>
-                                {time}
-                            </p>
-                        );
-                    })}
+                    <div className={cx('events')}>
+                        {schelude.thur.map((event, index) => {
+                            return (
+                                <div
+                                    key={index}
+                                    onClick={() => setContent(event)}
+                                    style={{ backgroundColor: event.color }}
+                                    className={cx('event', `start-${event.start}`, `end-${event.end}`)}
+                                >
+                                    <h5>
+                                        {event.name} - <span>{event.professor}</span>
+                                    </h5>
+
+                                    <p>
+                                        {event.time} {event.address}
+                                    </p>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
                 <div className={cx('day')}>
                     <h4>Friday</h4>
-                    {schelude.fri.map((time, index) => {
-                        return (
-                            <p key={index} onClick={handleClick}>
-                                {time}
-                            </p>
-                        );
-                    })}
+                    <div className={cx('events')}>
+                        {schelude.fri.map((event, index) => {
+                            return (
+                                <div
+                                    key={index}
+                                    onClick={() => setContent(event)}
+                                    style={{ backgroundColor: event.color }}
+                                    className={cx('event', `start-${event.start}`, `end-${event.end}`)}
+                                >
+                                    <h5>
+                                        {event.name} - <span>{event.professor}</span>
+                                    </h5>
+
+                                    <p>
+                                        {event.time} {event.address}
+                                    </p>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
 
@@ -123,16 +249,16 @@ function Schedule() {
                     </div>
                     <div className={cx('content')}>
                         <div className={cx('side')}>
-                            <p>Name</p>
-                            <p>Professor</p>
-                            <p>Time</p>
-                            <p>Address</p>
+                            <p>Name : </p>
+                            <p>Professor : </p>
+                            <p>Time : </p>
+                            <p>Address : </p>
                         </div>
-
                         <div className={cx('text')}>
-                            {text.map((text, index) => {
-                                return <p key={index}>{text}</p>;
-                            })}
+                            <p>{content.name}</p>
+                            <p>{content.professor}</p>
+                            <p>{content.time}</p>
+                            <p>{content.address}</p>
                         </div>
                     </div>
                 </div>
