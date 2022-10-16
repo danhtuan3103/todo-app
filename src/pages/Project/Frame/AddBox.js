@@ -4,11 +4,41 @@ import styles from './Frame.module.scss';
 import classNames from 'classnames/bind';
 import { IoCreateOutline } from 'react-icons/io5';
 import Button from '~/components/Button';
-
+import moment from 'moment';
 const cx = classNames.bind(styles);
-function AddBox({ handleClose }) {
+function AddBox({ onClose, _date }) {
     const [color, setColor] = useState('#e44232');
+    const [time, setTime] = useState('00:00:00');
+    const [date, setDate] = useState(_date || moment(new Date()).format('YYYY-MM-DD'));
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
     const desRef = useRef();
+
+    const handleClick = () => {
+        console.log('handleClick');
+        const data = {
+            title,
+            description,
+            time,
+            date,
+            color,
+        };
+        fetch('https://634bc6c5317dc96a308a8173.mockapi.io/api/month', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                onClose();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    };
 
     const handleChangeColor = (e) => {
         setColor(e.target.value);
@@ -17,7 +47,7 @@ function AddBox({ handleClose }) {
     return (
         <div className={cx('create-wrapper')}>
             <div className={cx('close-block')}>
-                <span className={cx('close-btn')} onClick={handleClose}>
+                <span className={cx('close-btn')} onClick={onClose}>
                     &#10005;
                 </span>
             </div>
@@ -29,32 +59,44 @@ function AddBox({ handleClose }) {
                     </span>
                 </div>
                 <div className={cx('content-input')}>
-                    <input type="text" className={cx('text-input')} placeholder="Title" />
+                    <input
+                        type="text"
+                        className={cx('text-input')}
+                        placeholder="Title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
                     <div className={cx('input-block')}>
                         <input type="color" value={color} className={cx('color-input')} onChange={handleChangeColor} />
                         <input
                             type="time"
                             className={cx('date-input')}
                             placeholder="YYYY/MM/DD"
-                            value="07:30:00"
-                            onChange={() => {}}
+                            value={time}
+                            onChange={(e) => setTime(e.target.value)}
                         />
 
                         <input
                             type="date"
                             className={cx('time-input')}
                             placeholder="00:00"
-                            value="2022-01-31"
-                            onChange={() => {}}
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
                         />
                     </div>
-                    <textarea ref={desRef} className={cx('desc')} placeholder="Description" />
+                    <textarea
+                        ref={desRef}
+                        className={cx('desc')}
+                        placeholder="Description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
                 </div>
                 <div className={cx('btn-block')}>
-                    <Button className={cx('btn', 'btn-cancel')} small onClick={handleClose}>
+                    <Button className={cx('btn', 'btn-cancel')} small onClick={onClose}>
                         Cancel
                     </Button>
-                    <Button className={cx('btn', 'btn-create')} small primary>
+                    <Button className={cx('btn', 'btn-create')} small primary onClick={handleClick}>
                         Create
                     </Button>
                 </div>
@@ -65,5 +107,6 @@ function AddBox({ handleClose }) {
 
 AddBox.propTypes = {
     handleClose: PropTypes.func,
+    date: PropTypes.string,
 };
 export default AddBox;
