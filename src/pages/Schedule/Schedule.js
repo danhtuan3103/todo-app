@@ -93,9 +93,6 @@ function Schedule() {
     const [content, setContent] = useState(null);
 
     console.log(content);
-    const handleClick = (e) => {
-        setContent(e.target.textContent);
-    };
 
     return (
         <div className={cx('wrapper')}>

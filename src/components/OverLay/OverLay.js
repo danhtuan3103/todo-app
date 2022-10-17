@@ -1,4 +1,4 @@
-import { useRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './OverLay.module.scss';
