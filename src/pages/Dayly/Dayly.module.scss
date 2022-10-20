@@ -2,6 +2,7 @@
     height: 85%;
     margin-top: 24px;
     position: relative;
+    --main-color: ;
 }
 .contains {
     display: flex;
@@ -18,15 +19,14 @@
 .list {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 8px;
 }
 
 .job {
     height: 50px;
-    width: 600px;
+    // width: 600px;
     // background-color: #333;
     display: flex;
+    margin-bottom: 8px;
 }
 
 .time {
@@ -34,23 +34,34 @@
     width: 80px;
     padding: 12px;
     text-align: center;
-    background-color: #119dd5;
+    background-color: #2ab7d8;
     font-weight: bold;
     font-size: 1.8rem;
     font-family: Montserrat;
+    overflow: hidden;
+    border-radius: 4px;
 }
 
 .content {
-    border: 2px solid #119dd5;
+    border: 2px solid #2ab7d8;
     flex: 1;
     padding: 12px;
     margin: 0 4px;
     font-size: 1.6rem;
+    border-radius: 4px;
+    font-family: Montserrat;
+    border-radius: 4px;
 }
 
 .tail {
     width: 100px;
-    background-color: #119dd566;
+    background-color: #2ab7d888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
 .add-btn {
@@ -73,4 +84,17 @@
 
 .btn {
     font-size: 3rem;
+}
+
+@media (max-width: 510px) {
+    .time,
+    .content,
+    .tail {
+        font-size: 1.4rem;
+    }
+
+    .time,
+    .tail {
+        width: 60px;
+    }
 }

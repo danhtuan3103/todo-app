@@ -144,7 +144,7 @@
         padding-bottom: 30px;
         max-height: 470px;
         justify-content: center;
-        overflow: auto;
+        overflow: overlay;
     }
 
     .add-tool {
@@ -162,15 +162,18 @@
 @media (max-width: 519px) {
     .header {
         height: 150px;
+        padding: 0 12px;
     }
     .content {
-        padding: 8px 0;
+        padding: 12px;
     }
     .text {
         display: none;
     }
 
-    .add-tool .card {
+    .add-tool,
+    .card {
         width: 100%;
+        margin-right: 0;
     }
 }

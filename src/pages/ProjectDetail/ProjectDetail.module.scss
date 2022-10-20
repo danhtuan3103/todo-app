@@ -97,13 +97,8 @@
     .description {
         width: 100%;
     }
-}
-
-@media (max-width: 739px) {
     .title {
         font-size: 2rem;
-    }
-    .description {
-        // height: 100px;
+        text-align: center;
     }
 }
