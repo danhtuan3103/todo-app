@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import styles from './Monthly.module.scss';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { BsPlusLg, BsCheckCircleFill } from 'react-icons/bs';
+import { BsPlusLg, BsCheckCircleFill, BsFillTrashFill } from 'react-icons/bs';
+import { FaEdit } from 'react-icons/fa';
 import moment from 'moment';
 import AddBox from '../Project/Frame/AddBox';
 import OverLay from '~/components/OverLay';
@@ -43,18 +44,24 @@ function Monthly() {
                 <div className={cx('list')}>
                     {data.map((card) => {
                         return (
-                            <div key={card.id} className={cx('card')} style={{ backgroundColor: card.color }}>
-                                <h4>{card.title}</h4>
-                                <i> {card.description}</i>
-                                <p>
-                                    {card.date} {card.time}
-                                </p>
+                            <div key={card.id} className={cx('card')}>
+                                <div className={cx('text')}>
+                                    <h4 style={{ color: card.color }}>{card.title}</h4>
+                                    <i> {card.description}</i>
+                                    <p>
+                                        {card.date} {card.time}
+                                    </p>
+                                </div>
+                                <div className={cx('tools')}>
+                                    <BsFillTrashFill className={cx('tool', 'trash')} />
+                                    <FaEdit className={cx('tool', 'edit')} />
+                                </div>
                             </div>
                         );
                     })}
                 </div>
             </div>
-            <div>
+            <div className={cx('calendar-block')}>
                 <Calendar
                     tileContent={(day) => {
                         const event = moment(day.date).format('YYYY-MM-DD');

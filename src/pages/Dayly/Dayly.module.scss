@@ -23,7 +23,10 @@
 
 .job {
     height: 50px;
-    // width: 600px;
+    border-radius: 99px;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    padding: 4px 24px;
     // background-color: #333;
     display: flex;
     margin-bottom: 8px;
@@ -34,7 +37,7 @@
     width: 80px;
     padding: 12px;
     text-align: center;
-    background-color: #2ab7d8;
+    // background-color: #2ab7d8;
     font-weight: bold;
     font-size: 1.8rem;
     font-family: Montserrat;
@@ -43,7 +46,7 @@
 }
 
 .content {
-    border: 2px solid #2ab7d8;
+    // border: 2px solid #2ab7d8;
     flex: 1;
     padding: 12px;
     margin: 0 4px;
@@ -51,32 +54,38 @@
     border-radius: 4px;
     font-family: Montserrat;
     border-radius: 4px;
+
+    &:focus {
+        caret-color: var(--primary);
+        // color: var(--primary);
+    }
 }
 
 .tail {
     width: 100px;
-    background-color: #2ab7d888;
+    // background-color: #2ab7d888;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
     cursor: pointer;
     border-radius: 4px;
+    color: var(--primary);
 }
 
 .add-btn {
     width: 60px;
     height: 60px;
-    position: absolute;
+    position: fixed;
     bottom: 2rem;
-    right: 0;
+    right: 2rem;
     border-radius: 50%;
     background-color: #e4423266;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.2s ease;
     cursor: pointer;
-    transition: background-color 0.1s ease;
     &:hover {
         background-color: #e4423288;
     }

@@ -1,7 +1,9 @@
 .frame {
     width: 300px;
     max-height: 500px;
-    background-color: #e4423211;
+    border-top: 1px solid #333;
+    background-color: #e4423222;
+    border-top: 2px solid #e44232;
     padding-bottom: 8px;
     border-radius: 16px;
     margin-bottom: 16px;
@@ -48,7 +50,7 @@
     border-radius: 6px;
     background-color: #e4423222;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease;
     &:hover {
         background-color: #e4423266;
     }
@@ -277,6 +279,7 @@
     width: 0px;
     height: 35px;
     color: inherit;
+    // transition: 0.2s ease;
 }
 
 .btn.btn-cancel {

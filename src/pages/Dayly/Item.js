@@ -63,15 +63,17 @@ function Item({ id, _time, _content, onSave = defaultFn }) {
     return (
         <div className={cx('job')} key={id} onKeyDown={handleKeyDown}>
             <input
-                style={{ backgroundColor: color }}
+                style={{ color: color }}
                 className={cx('time')}
+                placeholder="00:00"
                 onClick={handleClickTime}
                 onChange={handleChangeTime}
                 value={time}
             />
             <input
                 className={cx('content')}
-                style={{ borderColor: color }}
+                // style={{ borderColor: color }}
+                placeholder="Text In Here"
                 onChange={handleChangeContent}
                 onClick={handleClickContent}
                 value={content}
@@ -79,7 +81,7 @@ function Item({ id, _time, _content, onSave = defaultFn }) {
 
             <div
                 className={cx('tail')}
-                style={{ backgroundColor: `${color}88` }}
+                // style={{ backgroundColor: `${color}88` }}
                 onClick={(e) => handleSave(e, id, time, content)}
             >
                 {save ? 'Save' : ''}

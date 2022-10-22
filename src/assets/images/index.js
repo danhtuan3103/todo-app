@@ -9,6 +9,7 @@ const images = {
     woori: require('./worri.webp'),
     nonghuyp: require('./nonghuyp.png'),
     error: require('./404.png'),
+    goal: require('./Goal.png'),
 };
 
 export default images;

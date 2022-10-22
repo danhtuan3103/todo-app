@@ -1,0 +1,87 @@
+@font-face {
+    font-family: 'Reenie Beanie';
+    src: url('~/src/assets/font/reenie-beanie/ReenieBeanie.ttf');
+}
+.wrapper {
+    height: 100%;
+}
+
+.list {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    max-height: 100%;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 200px;
+    height: 250px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    background-color: rgb(159, 159, 2);
+    box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+    overflow: hidden;
+    cursor: pointer;
+    // transform: rotate(10deg);
+
+    &:hover,
+    &:focus {
+        box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
+        transform: scale(1.15);
+        position: relative;
+        z-index: 5;
+    }
+}
+.header {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.hole {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-left: 4px;
+    margin-top: 4px;
+    background-color: #ffff;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.title {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.text {
+    padding: 4px 8px;
+    font-family: Reenie Beanie;
+    font-size: 2rem;
+    text-rendering: optimizeLegibility;
+}
+
+.add-btn {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    border-radius: 50%;
+    background-color: #e4423266;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    &:hover {
+        background-color: #e4423288;
+    }
+}
+
+.btn {
+    font-size: 3rem;
+}

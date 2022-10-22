@@ -23,12 +23,13 @@
     text-align: start;
 }
 .content {
-    height: 94vh;
+    height: calc(100% - 50px);
     padding: 0px 32px;
     flex: 1;
     margin-top: 50px;
     transition: 0.3s;
     position: relative;
+    overflow: auto;
 }
 
 .overlay {
