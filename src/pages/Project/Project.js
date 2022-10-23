@@ -19,6 +19,7 @@ const PROJECT_LIST = [
     { type: 'todo', id: 5, title: 'Design', description: description, color: '#979922' },
     { type: 'todo', id: 6, title: 'Design', description: description, color: '#22998d' },
     { type: 'progress', id: 7, title: 'Design', description: description, color: '#22998d' },
+    // { type: 'completed', id: 7, title: 'Design', description: description, color: '#22998d' },
 ];
 function Project() {
     const [projects, setProjects] = useState(PROJECT_LIST);

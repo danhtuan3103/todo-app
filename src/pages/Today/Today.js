@@ -2,8 +2,9 @@ import { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Today.module.scss';
 import images from '~/assets/images';
-import { BsPlusLg } from 'react-icons/bs';
+import { BsPlusLg, BsCheckCircleFill } from 'react-icons/bs';
 import Card from './Card';
+import { NavLink } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 const _tasks = [
@@ -28,10 +29,35 @@ const _tasks = [
         color: 'cyan',
     },
 ];
+
+const _comple_tasks = [
+    {
+        title: 'Completed',
+        description: 'Hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn ',
+        color: 'green',
+        icon: BsCheckCircleFill,
+    },
+    {
+        title: 'Completed',
+        description: 'Hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn ',
+        color: 'red',
+        icon: BsCheckCircleFill,
+    },
+    {
+        title: 'Completed',
+        description: 'Hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn ',
+        color: 'yellow',
+        icon: BsCheckCircleFill,
+    },
+];
 function Today() {
     const [tasks, setTask] = useState(_tasks);
     const handleClick = (e) => {
         setTask((pre) => [...pre, { title: 'Shopping', description: 'Nothing', color: 'cyan' }]);
+    };
+
+    const handleClickTasks = (e) => {
+        setTask(_tasks);
     };
     return (
         <div className={cx('wrapper')}>
@@ -42,20 +68,30 @@ function Today() {
                     <p>Looks likes you are in a small . Here is a list of things you need to do</p>
                 </div>
                 <div className={cx('count-block')}>
-                    <div className={cx('task-count', 'active')}>
+                    <NavLink
+                        to="/today"
+                        end
+                        className={({ isActive }) => (isActive ? cx('task-count', 'active') : cx('task-count'))}
+                        onClick={handleClickTasks}
+                    >
                         <strong>73</strong>
                         <p>Created tasks</p>
-                    </div>
-                    <div className={cx('task-count')}>
+                    </NavLink>
+                    <NavLink
+                        to="/today/completed"
+                        className={({ isActive }) => (isActive ? cx('task-count', 'active') : cx('task-count'))}
+                        onClick={() => setTask(_comple_tasks)}
+                    >
                         <strong>56</strong>
                         <p>Completed tasks</p>
-                    </div>
+                    </NavLink>
                 </div>
             </div>
 
             <div className={cx('content')}>
                 {tasks.map((task, index) => {
-                    return <Card key={index} task={task} />;
+                    const Icon = task.icon;
+                    return <Card key={index} task={task} icon={task.icon} />;
                 })}
                 <div className={cx('add-tool')} onClick={handleClick}>
                     <BsPlusLg className={cx('plus-icon')} />

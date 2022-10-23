@@ -45,11 +45,13 @@
     justify-content: center;
     align-items: center;
     transition: background-color ease-in-out 0.2s;
+    transition: 0.2s linear;
 
     .icon {
         font-size: 2rem;
         padding: 0;
         margin-right: 4px;
+        transition: 0.2s linear;
 
         &:hover {
             background-color: transparent;

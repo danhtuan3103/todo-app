@@ -34,7 +34,7 @@ function Note({ card }) {
     };
 
     const handleClick = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         console.log('click');
         setShow(!show);
     };
@@ -45,7 +45,8 @@ function Note({ card }) {
             style={{ transform: `rotate(${card.rolate})`, backgroundColor: card.color }}
             onMouseEnter={handleMove}
             onMouseLeave={(e) => handleLeave(e, card.rolate)}
-            onClick={handleClick}
+            onContextMenu={handleClick}
+            onClick={(e) => setShow(false)}
         >
             <span className={cx('header')} onMouseEnter={(e) => e.preventDefault()}>
                 <span className={cx('hole')}> </span>

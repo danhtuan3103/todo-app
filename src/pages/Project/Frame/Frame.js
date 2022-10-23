@@ -23,7 +23,7 @@ function Frame({ children, title, data = [], onDelete, onMove }) {
             if (!data.length) {
                 return;
             }
-            ref.current.style.height = '100%';
+            ref.current.style.height = '600px';
             return;
         }
         ref.current.style.height = '300px';

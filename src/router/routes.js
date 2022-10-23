@@ -7,6 +7,7 @@ const publicRoute = [
     { path: '/project', component: Project },
     { path: '/projects/:id', component: ProjectDetail },
     { path: '/today', component: Today },
+    { path: '/today/completed', component: Today },
     { path: '/dayly', component: Dayly },
     { path: '/monthly', component: Monthly },
     { path: '/goals', component: Goals },

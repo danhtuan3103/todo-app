@@ -1,6 +1,6 @@
 .frame {
     width: 300px;
-    max-height: 500px;
+    height: 600px;
     border-top: 1px solid #333;
     background-color: #e4423222;
     border-top: 2px solid #e44232;
@@ -9,7 +9,7 @@
     margin-bottom: 16px;
     display: flex;
     flex-direction: column;
-    transition: 0.3s ease-in-out;
+    transition: height 0.3s ease-in-out;
 }
 
 .header {

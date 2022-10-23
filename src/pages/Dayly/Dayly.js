@@ -21,7 +21,7 @@ function Dayly() {
     }, [getApi]);
     const handleClickAdd = (e) => {
         const id = uniqid();
-        setJobs((pre) => [...pre, { id: id, time: '00:00', content: 'Text ' }]);
+        setJobs((pre) => [...pre, { id: id, time: '', content: '' }]);
         fetch('https://634bc6c5317dc96a308a8173.mockapi.io/api/dayly', {
             method: 'POST',
             headers: {

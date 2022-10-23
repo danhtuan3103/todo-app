@@ -5,9 +5,9 @@
 }
 
 .header {
-    padding: 16px 0;
     display: flex;
-    height: 200px;
+    // height: 200px;
+    padding: 4px 0;
     align-items: center;
 }
 
@@ -111,13 +111,17 @@
     background-color: #12120f;
     border-radius: 16px;
 
+    ul {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     p {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         color: var(--primary);
-        font-size: 2rem;
+        font-size: 1.6rem;
+        margin: 0 12px;
         &:hover {
             opacity: 0.7;
         }
@@ -173,6 +177,9 @@
 }
 
 @media (max-width: 739px) {
+    .count-block {
+        margin-top: 12px;
+    }
     .task-count {
         min-width: 120px;
 
