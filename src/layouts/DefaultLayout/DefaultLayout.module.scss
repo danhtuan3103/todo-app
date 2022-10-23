@@ -23,13 +23,14 @@
     text-align: start;
 }
 .content {
+    width: 100%;
     height: calc(100% - 50px);
     padding: 0px 32px;
     flex: 1;
     margin-top: 50px;
     transition: 0.3s;
     position: relative;
-    overflow: auto;
+    overflow-y: overlay;
 }
 
 .overlay {
