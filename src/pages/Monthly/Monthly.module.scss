@@ -77,10 +77,6 @@
     justify-content: space-around;
     margin-right: 12px;
 
-    h4 {
-        // font-family: Montserrat;
-    }
-
     p {
         font-family: monospace;
     }
@@ -88,7 +84,7 @@
 .tools {
     min-width: 100px;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 .tool {
     font-size: 2rem;

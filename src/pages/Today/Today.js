@@ -90,7 +90,6 @@ function Today() {
 
             <div className={cx('content')}>
                 {tasks.map((task, index) => {
-                    const Icon = task.icon;
                     return <Card key={index} task={task} icon={task.icon} />;
                 })}
                 <div className={cx('add-tool')} onClick={handleClick}>

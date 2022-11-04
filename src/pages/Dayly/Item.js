@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useState, memo } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Dayly.module.scss';
 const cx = classNames.bind(styles);
@@ -30,8 +31,7 @@ function Item({ id, _time, _content, onSave = defaultFn }) {
 
     const handleSave = (e, id, time, content) => {
         const currentElem = e.target;
-        onSave(id, time, content);
-        console.log(id, time, content);
+
         setSave(false);
         setColor('#2ab7d8');
         currentElem.blur();
@@ -48,7 +48,7 @@ function Item({ id, _time, _content, onSave = defaultFn }) {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
+                onSave(id, time, content);
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -90,4 +90,11 @@ function Item({ id, _time, _content, onSave = defaultFn }) {
     );
 }
 
-export default Item;
+Item.propsTypes = {
+    id: PropTypes.string.isRequired,
+    _time: PropTypes.string.isRequired,
+    _content: PropTypes.string.isRequired,
+    onSave: PropTypes.func,
+};
+
+export default memo(Item);

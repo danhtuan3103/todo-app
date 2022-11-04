@@ -14,7 +14,6 @@ const cx = classNames.bind(styles);
 function Frame({ children, title, data = [], onDelete, onMove }) {
     const ref = useRef();
     const overlayRef = useRef();
-    console.log('re-render Frame');
     const [showAll, setShowAll] = useState(false);
     // const [showAdd, setShowAdd] = useState(false);
 

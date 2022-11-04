@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react';
+import PropTypes from 'prop-types';
+import { useRef, useState, memo } from 'react';
 import styles from './Goals.module.scss';
 import classNames from 'classnames/bind';
 
@@ -58,4 +59,7 @@ function Note({ card }) {
     );
 }
 
-export default Note;
+Note.propsTypes = {
+    card: PropTypes.object.isRequired,
+};
+export default memo(Note);

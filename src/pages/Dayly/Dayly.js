@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import classNames from 'classnames/bind';
 import { BsPlus } from 'react-icons/bs';
 import uniqid from 'uniqid';
@@ -11,10 +10,8 @@ const cx = classNames.bind(styles);
 function Dayly() {
     const [jobs, setJobs] = useState([]);
     const [getApi, setGetApi] = useState(false);
-    console.log('re-render');
 
     useEffect(() => {
-        console.log('fech');
         fetch('https://634bc6c5317dc96a308a8173.mockapi.io/api/dayly')
             .then((response) => response.json())
             .then((data) => setJobs(data));
@@ -31,29 +28,27 @@ function Dayly() {
         })
             .then((response) => {
                 setGetApi(true);
-                return response.json();
-            })
-            .then((data) => {
-                console.log('fetch');
-                console.log(data);
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
     };
 
-    const handleSave = (id, time, content) => {
-        const newJob = jobs.map((job) => {
-            if (job.id === id) {
-                job.time = time;
-                job.content = content;
-            }
+    const handleSave = useCallback(
+        (id, time, content) => {
+            const newJob = jobs.map((job) => {
+                if (job.id === id) {
+                    job.time = time;
+                    job.content = content;
+                }
 
-            return job;
-        });
+                return job;
+            });
 
-        setJobs(newJob);
-    };
+            setJobs(newJob);
+        },
+        [jobs],
+    );
 
     return (
         <div className={cx('wrapper')}>
@@ -61,13 +56,7 @@ function Dayly() {
                 <h2 className={cx('title')}>Dayly Routines</h2>
                 <List>
                     {jobs.map((job) => (
-                        <Item
-                            key={job.id}
-                            id={job.id}
-                            _time={job.time}
-                            _content={job.content}
-                            onSave={() => handleSave()}
-                        />
+                        <Item key={job.id} id={job.id} _time={job.time} _content={job.content} onSave={handleSave} />
                     ))}
                 </List>
             </div>

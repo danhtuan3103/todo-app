@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import styles from './Monthly.module.scss';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -10,7 +10,6 @@ import AddBox from '../Project/Frame/AddBox';
 import OverLay from '~/components/OverLay';
 const cx = classNames.bind(styles);
 
-const events = ['2022-10-01', '2022-10-02', '2022-10-03'];
 function Monthly() {
     const [value, onChange] = useState(new Date());
     const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
@@ -29,6 +28,12 @@ function Monthly() {
         console.log(moment(value).format('YYYY-MM-DD'));
         // console.log((e.target.style.backgroundColor = 'cyan'));
     };
+
+    const dateHasEvent = useMemo(() => {
+        const temp = data.map((d) => d.date);
+
+        return temp;
+    }, [data]);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('events')}>
@@ -66,8 +71,8 @@ function Monthly() {
                     tileContent={(day) => {
                         const event = moment(day.date).format('YYYY-MM-DD');
 
-                        for (let e = 0; e < events.length; e++) {
-                            if (events[e] === event) {
+                        for (let e = 0; e < dateHasEvent.length; e++) {
+                            if (dateHasEvent[e] === event) {
                                 return <BsCheckCircleFill className={cx('check')} />;
                             }
                         }

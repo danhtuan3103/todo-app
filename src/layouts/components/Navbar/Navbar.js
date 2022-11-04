@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+import { memo } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Navbar.module.scss';
 import { AiOutlineHome, AiOutlineBell, AiOutlineMenu } from 'react-icons/ai';
@@ -34,4 +36,7 @@ function Navbar({ onClickMenuIcon }) {
     );
 }
 
-export default Navbar;
+Navbar.propsTypes = {
+    onClick: PropTypes.func.isRequired,
+};
+export default memo(Navbar);

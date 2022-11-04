@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+import { memo } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Today.module.scss';
 import { CgShapeCircle } from 'react-icons/cg';
@@ -24,4 +26,8 @@ function Card({ task, icon = CgShapeCircle }) {
     );
 }
 
-export default Card;
+Card.propTypes = {
+    task: PropTypes.object.isRequired,
+    icon: PropTypes.node,
+};
+export default memo(Card);

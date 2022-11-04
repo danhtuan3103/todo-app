@@ -1,12 +1,12 @@
-import { memo } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { memo } from 'react';
 import classNames from 'classnames/bind';
-import { ImAttachment } from 'react-icons/im';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 
+import { ImAttachment } from 'react-icons/im';
 import styles from './Card.module.scss';
-import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 function Card({ data, className, onDelete, onMove }) {

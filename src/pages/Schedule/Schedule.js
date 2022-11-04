@@ -92,8 +92,6 @@ const schelude = {
 function Schedule() {
     const [content, setContent] = useState(null);
 
-    console.log(content);
-
     return (
         <div className={cx('wrapper')}>
             <h2 className={cx('title')}>SCHOOL TIMETABLE</h2>
