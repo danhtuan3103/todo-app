@@ -7,6 +7,8 @@
     padding-bottom: 8px;
     border-radius: 16px;
     margin-bottom: 16px;
+    flex: 1 1 250px;
+    margin: 12px;
     display: flex;
     flex-direction: column;
     transition: height 0.3s ease-in-out;
@@ -70,42 +72,43 @@
 .seeall-overlay {
     background-color: rgb(34, 31, 31, 0.9);
     flex-direction: column;
-    justify-content: flex-start !important;
+    justify-content: flex-center;
     -webkit-animation-name: zoom;
     -webkit-animation-duration: 0.6s;
     animation-name: zoom;
     animation-duration: 0.6s;
 
     .container-overlay {
-        padding-left: 32px;
+        padding: 12px 32px;
         padding-bottom: 52px;
         width: 100%;
         display: flex;
         flex-wrap: wrap;
-        align-items: flex-start;
+        align-items: center;
         overflow-y: auto;
     }
     .card {
-        width: 270px;
-        height: 250px;
         margin-right: 16px;
         height: 300px;
+        flex: 1 1 250px;
     }
 
     .card:last-child {
-        margin-bottom: 32px;
+        // margin-bottom: 32px;
     }
 }
-
 .close-block {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
+    // display: flex;
+    // justify-content: flex-end;
+    position: absolute;
+    right: 12px;
+    top: 12px;
 }
 
 .close-btn {
-    font-size: 3.4rem;
+    font-size: 2.4rem;
     padding: 0px 8px;
+
     font-weight: bold;
     background-color: transparent;
     color: var(--white);
@@ -146,156 +149,6 @@
     animation-duration: 0.4s;
     overflow-y: auto;
     display: flex;
-}
-
-.create-wrapper {
-    width: 600px;
-    height: 500px;
-    background-color: #333;
-    position: relative;
-    border-radius: 12px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    color: var(--white);
-    overflow: hidden;
-
-    .close-btn {
-        font-size: 2.8rem;
-    }
-}
-
-.content {
-    height: 100%;
-    padding: 0px 16px;
-    color: rgb(144, 144, 144);
-    overflow: auto;
-}
-.content-header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-
-    h3 {
-        font-weight: 400;
-        color: var(--white);
-    }
-
-    span {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: 8px;
-        font-size: 2.4rem;
-        color: var(--white);
-    }
-}
-.content-input {
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-
-    * {
-        margin: 8px 0;
-    }
-}
-
-.text-input {
-    font-size: 2rem;
-    padding: 4px 0;
-    background-color: transparent;
-    border-bottom: 1px solid var(--white);
-    color: inherit;
-
-    &:not(:placeholder-shown) {
-        color: var(--main-color);
-    }
-}
-
-.input-block {
-    display: flex;
-    justify-content: space-between;
-}
-
-.color-input {
-    margin: 0;
-    width: 80px;
-    height: 35px;
-    // height: 30px;
-    border-radius: 4px;
-    border: 1px solid #e4423299;
-    background-color: transparent;
-    cursor: pointer;
-}
-
-.color-input::-webkit-color-swatch {
-    border-radius: 4px;
-    border: none;
-}
-
-.color-input::-moz-color-swatch {
-    border-radius: 4px;
-    border: none;
-}
-
-.time-input,
-.date-input {
-    margin: 0 8px;
-    font-size: 1.6rem;
-    padding: 0 8px;
-    border-radius: 8px;
-}
-.desc {
-    font-size: 1.6rem;
-    height: 250px;
-    padding: 8px;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-    border: 1px solid transparent;
-
-    &:focus {
-        border-color: var(--main-color);
-    }
-}
-.btn-block {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 54px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    color: inherit;
-    background-color: #111;
-    width: 100%;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-}
-
-.btn {
-    min-width: 70px;
-    margin-bottom: 0;
-    background-color: var(--main-color);
-    border: none;
-    font-size: 1.4rem;
-    width: 0px;
-    height: 35px;
-    color: inherit;
-    // transition: 0.2s ease;
-}
-
-.btn.btn-cancel {
-    background-color: #333;
-    &:hover {
-        opacity: 0.6;
-    }
-}
-.btn.btn-create {
-    color: var(--white);
-    margin-right: 16px;
-
-    &:hover {
-        background-color: var(--main-color);
-        opacity: 0.6;
-    }
 }
 
 // ---- Responsive -------

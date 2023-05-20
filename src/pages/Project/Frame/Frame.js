@@ -11,7 +11,7 @@ import OverLay from '~/components/OverLay';
 import Card from '~/components/Card';
 // import AddBox from './AddBox';
 const cx = classNames.bind(styles);
-function Frame({ children, title, data = [], onDelete, onMove }) {
+function Frame({ children, title, data = [], onDelete, onMove, isCreateable }) {
     const ref = useRef();
     const overlayRef = useRef();
     const [showAll, setShowAll] = useState(false);
@@ -56,14 +56,16 @@ function Frame({ children, title, data = [], onDelete, onMove }) {
                     </span>
                 </Tippy>
             </div>
-            <Link
-                className={cx('plus')}
-                to={{
-                    pathname: '/projects/create',
-                }}
-            >
-                <BsPlusLg />
-            </Link>
+            {isCreateable && (
+                <Link
+                    className={cx('plus')}
+                    to={{
+                        pathname: '/projects/create',
+                    }}
+                >
+                    <BsPlusLg />
+                </Link>
+            )}
             <div className={cx('project-wrapper')}>{children}</div>
 
             {/*-------- See all ------------- */}
@@ -87,13 +89,6 @@ function Frame({ children, title, data = [], onDelete, onMove }) {
                     </div>
                 </OverLay>
             )}
-
-            {/* ---------- Add block ------------ */}
-            {/* {showAdd && (
-                <OverLay className={cx('addbox-overlay')}>
-                    <AddBox handleClose={handleClose} />
-                </OverLay>
-            )} */}
         </div>
     );
 }

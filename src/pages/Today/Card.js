@@ -6,7 +6,7 @@ import { CgShapeCircle } from 'react-icons/cg';
 
 const cx = classNames.bind(styles);
 
-function Card({ task, icon = CgShapeCircle }) {
+function Card({ task, icon = CgShapeCircle, isAddItem }) {
     const Icon = icon;
     return (
         <div className={cx('card')}>
@@ -16,12 +16,14 @@ function Card({ task, icon = CgShapeCircle }) {
             <h4 className={cx('title')}>{task.title}</h4>
             <p className={cx('des')}>{task.description}</p>
 
-            <div className={cx('menu')}>
-                <ul>
-                    <p>Delete</p>
-                    <p>Completed</p>
-                </ul>
-            </div>
+            {!isAddItem && (
+                <div className={cx('menu')}>
+                    <ul>
+                        <p>Delete</p>
+                        <p>Completed</p>
+                    </ul>
+                </div>
+            )}
         </div>
     );
 }

@@ -52,9 +52,9 @@ function Project() {
 
     return (
         <div className={cx('wrapper')}>
-            <h2 className={cx('title')}>Projects</h2>
+            {/* <h2 className={cx('title')}>Projects</h2> */}
             <div className={cx('projects')}>
-                <Frame title="To do" data={todo} onDelete={handleDelete} onMove={handleMove}>
+                <Frame title="To do" data={todo} onDelete={handleDelete} onMove={handleMove} isCreateable={true}>
                     {todo.map((project, index) => {
                         return (
                             <Card

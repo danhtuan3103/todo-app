@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import styles from './Frame.module.scss';
+import styles from './AddBox.module.scss';
 import classNames from 'classnames/bind';
 import { IoCreateOutline } from 'react-icons/io5';
 import Button from '~/components/Button';
@@ -12,7 +12,7 @@ function AddBox({ onClose, _date }) {
     const [date, setDate] = useState(_date || moment(new Date()).format('YYYY-MM-DD'));
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const desRef = useRef();
+    const titRef = useRef();
 
     const handleClick = () => {
         console.log('handleClick');
@@ -42,24 +42,25 @@ function AddBox({ onClose, _date }) {
 
     const handleChangeColor = (e) => {
         setColor(e.target.value);
-        desRef.current.style.backgroundColor = e.target.value;
+        titRef.current.style.color = e.target.value;
     };
     return (
         <div className={cx('create-wrapper')}>
-            <div className={cx('close-block')}>
-                <span className={cx('close-btn')} onClick={onClose}>
-                    &#10005;
-                </span>
-            </div>
             <div className={cx('content')}>
                 <div className={cx('content-header')}>
                     <h3>Create an Project</h3>
                     <span>
                         <IoCreateOutline />
                     </span>
+                    <div className={cx('close-block')}>
+                        <span className={cx('close-btn')} onClick={onClose}>
+                            &#10005;
+                        </span>
+                    </div>
                 </div>
                 <div className={cx('content-input')}>
                     <input
+                        ref={titRef}
                         type="text"
                         className={cx('text-input')}
                         placeholder="Title"
@@ -85,7 +86,6 @@ function AddBox({ onClose, _date }) {
                         />
                     </div>
                     <textarea
-                        ref={desRef}
                         className={cx('desc')}
                         placeholder="Description"
                         value={description}

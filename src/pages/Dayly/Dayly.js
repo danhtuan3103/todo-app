@@ -7,31 +7,34 @@ import styles from './Dayly.module.scss';
 import List from './List';
 import Item from './Item';
 const cx = classNames.bind(styles);
+
+const JOBS = [
+    {
+        id: uniqid(),
+        time: '9:00',
+        content: 'Wake up',
+    },
+    {
+        id: uniqid(),
+        time: '10:00',
+        content: 'Breakfash',
+    },
+];
 function Dayly() {
-    const [jobs, setJobs] = useState([]);
+    const [jobs, setJobs] = useState(JOBS);
     const [getApi, setGetApi] = useState(false);
 
-    useEffect(() => {
-        fetch('https://634bc6c5317dc96a308a8173.mockapi.io/api/dayly')
-            .then((response) => response.json())
-            .then((data) => setJobs(data));
-    }, [getApi]);
+    // useEffect(() => {
+
+    // }, [getApi]);
     const handleClickAdd = (e) => {
-        const id = uniqid();
-        setJobs((pre) => [...pre, { id: id, time: '', content: '' }]);
-        fetch('https://634bc6c5317dc96a308a8173.mockapi.io/api/dayly', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ id: id, time: '', content: '' }),
-        })
-            .then((response) => {
-                setGetApi(true);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+        let newJob = {
+            id: uniqid(),
+            time: '00:00',
+            content: 'Text here ... ',
+        };
+
+        setJobs(() => [...jobs, newJob]);
     };
 
     const handleSave = useCallback(

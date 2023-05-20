@@ -12,21 +12,25 @@ const _tasks = [
         title: 'Shoping',
         description: 'Hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn ',
         color: 'green',
+        isAddItem: false,
     },
     {
         title: 'Shoping',
         description: 'Hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn ',
         color: 'red',
+        isAddItem: false,
     },
     {
         title: 'Shoping',
         description: 'Hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn ',
         color: 'yellow',
+        isAddItem: false,
     },
     {
         title: 'Shoping',
         description: 'Hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn ',
         color: 'cyan',
+        isAddItem: false,
     },
 ];
 
@@ -53,7 +57,7 @@ const _comple_tasks = [
 function Today() {
     const [tasks, setTask] = useState(_tasks);
     const handleClick = (e) => {
-        setTask((pre) => [...pre, { title: 'Shopping', description: 'Nothing', color: 'cyan' }]);
+        setTask((pre) => [...pre, { title: 'Shopping', description: 'Nothing', color: 'cyan', isAddItem: true }]);
     };
 
     const handleClickTasks = (e) => {
@@ -90,7 +94,7 @@ function Today() {
 
             <div className={cx('content')}>
                 {tasks.map((task, index) => {
-                    return <Card key={index} task={task} icon={task.icon} />;
+                    return <Card key={index} task={task} icon={task.icon} isAddItem={task.isAddItem} />;
                 })}
                 <div className={cx('add-tool')} onClick={handleClick}>
                     <BsPlusLg className={cx('plus-icon')} />
