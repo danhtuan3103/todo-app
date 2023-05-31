@@ -89,3 +89,104 @@ export const TASKS = [
         color: 'yellow',
     },
 ];
+
+export const SCHEDULE = [
+    {
+        day: 'Monday',
+        schedules: [
+            {
+                name: '알고리즘',
+                professor: '최지웅',
+                time: '15:00-16:15',
+                address: ' 정보과학관_21304',
+                start: 9,
+                end: 10,
+                color: '#fafaa3',
+            },
+        ],
+    },
+    {
+        day: 'Thusday',
+        schedules: [
+            {
+                name: '학문목적한국어4',
+                professor: '장지영',
+                time: '10:30-11:45',
+                address: '진리관_11114',
+                start: 2,
+                end: 4,
+                color: '#fff1f8',
+            },
+
+            {
+                name: '데이터통신과네트워크',
+                professor: '조효진',
+                time: '15:00-16:15',
+                address: '정보과학관_21304',
+                start: 4,
+                end: 7,
+                color: '#fafaa3',
+            },
+        ],
+    },
+    {
+        day: 'Tuesday',
+        schedules: [
+            {
+                name: '윈도우프로그래밍및실습',
+                professor: '이근정',
+                time: '16:00-17:50',
+                address: '정보과학관_21101',
+                start: 6,
+                end: 8,
+                color: '#d1ffe6',
+            },
+        ],
+    },
+    {
+        day: 'Thusday',
+        schedules: [
+            {
+                name: '생명정보과학',
+                professor: '공현승',
+                time: '09:00-10:15',
+                address: '정보과학관_21204',
+                start: 2,
+                end: 3,
+                color: '#fff1f8',
+            },
+            {
+                name: '채플',
+                professor: '정대경',
+                time: '15:00-15:50',
+                address: '한경직기념관_08110',
+                start: 6,
+                end: 7,
+                color: '#e2f8ff',
+            },
+            {
+                name: '고급컴퓨터수',
+                professor: '최형광',
+                time: '16:30-17:45',
+                address: '정보과학관_21305',
+                start: 7,
+                end: 9,
+                color: '#fff1f8',
+            },
+        ],
+    },
+    {
+        day: 'Friday',
+        schedules: [
+            {
+                name: '학문목적한국어4',
+                professor: '장지영',
+                time: '10:30-11:45',
+                address: '진리관_11114',
+                start: 3,
+                end: 4,
+                color: '#e2f8ff',
+            },
+        ],
+    },
+];

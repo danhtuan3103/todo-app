@@ -7,6 +7,8 @@ import Card from './Card';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { todayActions } from '~/store';
+import uniqid from 'uniqid';
+import { generateRandomColor } from '~/utils';
 const cx = classNames.bind(styles);
 
 function Today() {
@@ -43,7 +45,18 @@ function Today() {
         }
     }, [tasks]);
 
-    const handleAdd = () => {};
+    const handleAddBox = () => {
+        dispatch(
+            todayActions.addSampleBox({
+                id: uniqid(),
+                type: 'todo',
+                title: 'Title .... ',
+                description: 'Short description .... ',
+                color: generateRandomColor(),
+                isSample: true,
+            }),
+        );
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -88,7 +101,7 @@ function Today() {
 
                 {mode.length === 0 && <p>No tasks available</p>}
                 {!isComplete && (
-                    <div className={cx('add-tool')} onClick={handleAdd}>
+                    <div className={cx('add-tool')} onClick={handleAddBox}>
                         <BsPlusLg className={cx('plus-icon')} />
                     </div>
                 )}

@@ -44,10 +44,21 @@ const todaySlice = createSlice({
     reducers: {
         addTask: (state, action) => {
             console.log(action.payload);
-            state.tasks = [action.payload, ...state.tasks];
+            state.tasks = state.tasks.map((p) => {
+                if (p.id === action.payload.id) {
+                    p.title = action.payload.title;
+                    p.description = action.payload.description;
+                    p.color = action.payload.color;
+
+                    p.isSample = false;
+                }
+
+                return p;
+            });
+
+            console.log(state.tasks);
         },
         deleteTask: (state, action) => {
-            console.log(action.payload);
             state.tasks = state.tasks.filter((obj) => obj.id !== action.payload);
         },
         editTask: (state, action) => {},
@@ -57,6 +68,10 @@ const todaySlice = createSlice({
                     return { ...p, type: 'completed' };
                 } else return p;
             });
+        },
+        addSampleBox: (state, action) => {
+            state.tasks = [...state.tasks, action.payload];
+            console.log(state.tasks);
         },
     },
 });

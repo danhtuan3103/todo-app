@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, memo } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Dayly.module.scss';
+import useOutsideClick from '~/hook/useOutsideClick';
 const cx = classNames.bind(styles);
 
 const defaultFn = () => {};
@@ -60,8 +61,17 @@ function Item({ id, _time, _content, onSave = defaultFn }) {
             handleSave(e, id, time, content);
         }
     };
+    const handleClickOutside = () => {
+        console.log('handleClickOutside');
+
+        // setSave(false);
+        setColor('#2ab7d8');
+    };
+
+    const boxRef = useOutsideClick(handleClickOutside);
+
     return (
-        <div className={cx('job')} key={id} onKeyDown={handleKeyDown}>
+        <div className={cx('job')} key={id} onKeyDown={handleKeyDown} ref={boxRef}>
             <input
                 style={{ color: color }}
                 className={cx('time')}
