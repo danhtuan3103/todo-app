@@ -11,7 +11,7 @@ import styles from './Card.module.scss';
 const cx = classNames.bind(styles);
 function Card({ data, className, onDelete, onMove }) {
     return (
-        <div className={cx('wrapper', { [className]: className })} style={{ backgroundColor: data.color }}>
+        <div className={cx('wrapper', { [className]: className })}>
             <div className={cx('header')}>
                 <span className={cx('dot')}></span>
 
@@ -23,7 +23,7 @@ function Card({ data, className, onDelete, onMove }) {
                     delay={[100, 200]}
                     render={(attrs) => (
                         <div className={cx('box')} tabIndex="-1" {...attrs}>
-                            <Link className={cx('tool-item')} to={`/projects/${data.id}`}>
+                            <Link className={cx('tool-item')} to={`/project/${data.id}`}>
                                 See detail
                             </Link>
                             <p className={cx('tool-item')} onClick={onDelete}>

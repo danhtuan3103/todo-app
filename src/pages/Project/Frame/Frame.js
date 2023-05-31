@@ -60,7 +60,7 @@ function Frame({ children, title, data = [], onDelete, onMove, isCreateable }) {
                 <Link
                     className={cx('plus')}
                     to={{
-                        pathname: '/projects/create',
+                        pathname: '/project/create',
                     }}
                 >
                     <BsPlusLg />

@@ -1,58 +1,57 @@
 import classNames from 'classnames/bind';
 import styles from './ProjectDetail.module.scss';
 import { GrTextAlignLeft, GrTextAlignRight, GrTextAlignCenter } from 'react-icons/gr';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import uniqid from 'uniqid';
+import Button from '~/components/Button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { actions } from '~/store';
 const cx = classNames.bind(styles);
 function ProjectDetail() {
     const desRef = useRef();
-    const [color, setColor] = useState('#e44232');
-    const colorRef = useRef();
-    const defaultFn = () => {
-        console.log('Clik');
-    };
-    const BoldTool = () => {
-        desRef.current.style.fontWeight = 'bold';
-    };
-    const ItalicTool = () => {
-        desRef.current.style.fontStyle = 'italic';
-    };
-    const TextAlignLeft = () => {
-        desRef.current.style.textAlign = 'left';
-    };
-    const TextAlignCenter = () => {
-        desRef.current.style.textAlign = 'center';
-    };
-    const TextAlignRight = () => {
-        desRef.current.style.textAlign = 'right';
-    };
-    const Uppercase = () => {
-        desRef.current.style.textTransform = 'uppercase';
-    };
-    const Lowercase = () => {
-        desRef.current.style.textTransform = 'lowercase';
-    };
-    const Capitalize = () => {
-        desRef.current.style.textTransform = 'capitalize';
-    };
-    const CleatText = () => {
-        desRef.current.value = '';
-    };
-    const TOOLS = [
-        { name: 'Bold', onClick: BoldTool },
-        { name: 'Italic', onClick: ItalicTool },
-        { name: <GrTextAlignLeft />, onClick: TextAlignLeft },
-        { name: <GrTextAlignCenter />, onClick: TextAlignCenter },
-        { name: <GrTextAlignRight />, onClick: TextAlignRight },
-        { name: 'Upper Case', onClick: Uppercase },
-        { name: 'Lower Case', onClick: Lowercase },
-        { name: 'Capitalize', onClick: Capitalize },
-        { name: 'Clear Text', onClick: CleatText },
-    ];
+    const projects = useSelector((state) => state.projects.projects);
+    const [card, setCard] = useState({});
+    const [title, setTitle] = useState('Design');
+    const [des, setDes] = useState('');
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    useEffect(() => {
+        // console.log('id', id);
+        if (id) {
+            const card = projects.find((p) => {
+                return p.id === +id;
+            });
+            setCard(card);
+            setTitle(card.title);
+            setDes(card.description);
+        }
+    }, []);
 
-    const handleOnChangeColor = (e) => {
-        setColor(e.target.value);
-        desRef.current.style.backgroundColor = e.target.value;
+    const createProject = () => {
+        const data = {
+            id: uniqid(),
+            type: 'todo',
+            title: title,
+            description: des,
+        };
+        console.log(data);
+        dispatch(actions.addProject(data));
+        navigate('/project');
     };
+
+    const handleEdit = () => {
+        const data = {
+            id: +id,
+            title: title,
+            description: des,
+        };
+        console.log(data);
+        dispatch(actions.editProject(data));
+        navigate('/project');
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -62,11 +61,11 @@ function ProjectDetail() {
                         type="text"
                         className={cx('title')}
                         placeholder="Title"
-                        value="Design"
-                        onChange={defaultFn}
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
-                <div className={cx('tool')}>
+                {/* <div className={cx('tool')}>
                     {TOOLS.map((tool, index) => {
                         const Fn = tool.onClick;
                         return (
@@ -82,10 +81,21 @@ function ProjectDetail() {
                         value={color}
                         onChange={handleOnChangeColor}
                     />
-                </div>
+                </div> */}
                 <div className={cx('description-wrapper')}>
-                    <textarea ref={desRef} className={cx('description')} placeholder="Your Text Here" />
+                    <textarea
+                        ref={desRef}
+                        className={cx('description')}
+                        placeholder="Your Text Here"
+                        value={des}
+                        onChange={(e) => setDes(e.target.value)}
+                    />
                 </div>
+            </div>
+            <div className={cx('btn-wrap')}>
+                <button className={cx('btn')} onClick={id ? handleEdit : createProject}>
+                    {id ? 'Save' : 'Submit'}
+                </button>
             </div>
         </div>
     );

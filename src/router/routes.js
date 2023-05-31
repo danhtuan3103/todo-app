@@ -5,7 +5,8 @@ const publicRoute = [
     // TODOLIST APP
     { path: '/', component: Schedule },
     { path: '/project', component: Project },
-    { path: '/projects/:id', component: ProjectDetail },
+    { path: '/project/create', component: ProjectDetail },
+    { path: '/project/:id', component: ProjectDetail },
     { path: '/today', component: Today },
     { path: '/today/completed', component: Today },
     { path: '/dayly', component: Dayly },

@@ -6,23 +6,39 @@ import 'react-calendar/dist/Calendar.css';
 import { BsPlusLg, BsCheckCircleFill, BsFillTrashFill } from 'react-icons/bs';
 import { FaEdit } from 'react-icons/fa';
 import moment from 'moment';
-import AddBox from '../Project/Frame/AddBox';
+import AddBox from '~/components/Addbox';
 import OverLay from '~/components/OverLay';
 const cx = classNames.bind(styles);
 
+const JOBS = [
+    {
+        createdAt: '2023-05-19T05:15:13.210Z',
+        title: 'Hello ',
+        description: 'Hello ',
+        color: '#e44232',
+        date: '2023-05-20',
+        time: '00:00:00',
+        id: '1',
+    },
+    {
+        createdAt: '2023-05-19T10:33:57.983Z',
+        title: 'A',
+        description: 'A',
+        color: '#a22115',
+        date: '2023-05-17',
+        time: '00:00:00',
+        id: '2',
+    },
+];
 function Monthly() {
     const [value, onChange] = useState(new Date());
     const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(JOBS);
     const [openBox, setOpenBox] = useState(false);
-
-    useEffect(() => {
-        fetch('https://634bc6c5317dc96a308a8173.mockapi.io/api/month')
-            .then((response) => response.json())
-            .then((data) => setData(data));
-    }, []);
+    const [editData, setEditData] = useState(null);
 
     const handleClickDay = (value, e) => {
+        setEditData(null);
         setDate(moment(value).format('YYYY-MM-DD'));
         setOpenBox(true);
         console.log(moment(value).format('YYYY-MM-DD'));
@@ -34,6 +50,17 @@ function Monthly() {
 
         return temp;
     }, [data]);
+
+    const handleDeleteEvent = (id) => {
+        const newData = data.filter((s) => s.id !== id);
+        setData(newData);
+    };
+
+    const handleEditEvent = (card) => {
+        setEditData(card);
+        setOpenBox(true);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('events')}>
@@ -41,7 +68,13 @@ function Monthly() {
                     <h3>Events</h3>
                     <div className={cx('create-event')}>
                         <p className={cx('label')}>Create event</p>
-                        <span className={cx('plus-btn')} onClick={() => setOpenBox(true)}>
+                        <span
+                            className={cx('plus-btn')}
+                            onClick={() => {
+                                setEditData(null);
+                                setOpenBox(true);
+                            }}
+                        >
                             <BsPlusLg />
                         </span>
                     </div>
@@ -58,8 +91,11 @@ function Monthly() {
                                     </p>
                                 </div>
                                 <div className={cx('tools')}>
-                                    <BsFillTrashFill className={cx('tool', 'trash')} />
-                                    <FaEdit className={cx('tool', 'edit')} />
+                                    <BsFillTrashFill
+                                        className={cx('tool', 'trash')}
+                                        onClick={() => handleDeleteEvent(card.id)}
+                                    />
+                                    <FaEdit className={cx('tool', 'edit')} onClick={() => handleEditEvent(card)} />
                                 </div>
                             </div>
                         );
@@ -87,7 +123,13 @@ function Monthly() {
 
             {openBox && (
                 <OverLay className={cx('overlay')}>
-                    <AddBox onClose={() => setOpenBox(false)} _date={date} />
+                    <AddBox
+                        onClose={() => setOpenBox(false)}
+                        _date={date}
+                        setData={setData}
+                        data={data}
+                        edit={editData}
+                    />
                 </OverLay>
             )}
         </div>

@@ -5,39 +5,35 @@ import classNames from 'classnames/bind';
 import { IoCreateOutline } from 'react-icons/io5';
 import Button from '~/components/Button';
 import moment from 'moment';
+import uniqid from 'uniqid';
 const cx = classNames.bind(styles);
-function AddBox({ onClose, _date }) {
-    const [color, setColor] = useState('#e44232');
-    const [time, setTime] = useState('00:00:00');
-    const [date, setDate] = useState(_date || moment(new Date()).format('YYYY-MM-DD'));
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+function AddBox({ onClose, _date, setData, data, edit }) {
+    const [color, setColor] = useState(edit?.color || '#e44232');
+    const [time, setTime] = useState(edit?.time || '00:00:00');
+    const [date, setDate] = useState(edit?.date || _date || moment(new Date()).format('YYYY-MM-DD'));
+    const [title, setTitle] = useState(edit?.title || '');
+    const [description, setDescription] = useState(edit?.description || '');
     const titRef = useRef();
 
-    const handleClick = () => {
-        console.log('handleClick');
-        const data = {
+    const handleAddEvent = () => {
+        const card = {
             title,
             description,
             time,
             date,
             color,
+            id: uniqid(),
         };
-        fetch('https://634bc6c5317dc96a308a8173.mockapi.io/api/month', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                onClose();
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+        if (edit) {
+            console.log('handleEdit');
+            const newData = data.filter((d) => d.id !== edit.id);
+            setData([...newData, card]);
+            onClose();
+        } else {
+            console.log('handleClick');
+            setData((prev) => [...prev, card]);
+            onClose();
+        }
     };
 
     const handleChangeColor = (e) => {
@@ -96,8 +92,8 @@ function AddBox({ onClose, _date }) {
                     <Button className={cx('btn', 'btn-cancel')} small onClick={onClose}>
                         Cancel
                     </Button>
-                    <Button className={cx('btn', 'btn-create')} small primary onClick={handleClick}>
-                        Create
+                    <Button className={cx('btn', 'btn-create')} small primary onClick={handleAddEvent}>
+                        {edit ? 'Edit' : 'Create'}
                     </Button>
                 </div>
             </div>

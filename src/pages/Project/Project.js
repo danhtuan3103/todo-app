@@ -3,49 +3,28 @@ import styles from './Project.module.scss';
 
 import Card from '~/components/Card';
 import Frame from './Frame';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { actions } from '~/store';
 const cx = classNames.bind(styles);
-
-const description =
-    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the \
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the \
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the  ';
-
-const PROJECT_LIST = [
-    { type: 'todo', id: 1, title: 'Design', description: description, color: '#34eba8' },
-    { type: 'todo', id: 2, title: 'Design', description: description, color: '#22998d' },
-    { type: 'todo', id: 3, title: 'Design', description: description, color: '#992273' },
-    { type: 'todo', id: 4, title: 'Design', description: description, color: '#979922' },
-    { type: 'todo', id: 5, title: 'Design', description: description, color: '#979922' },
-    { type: 'todo', id: 6, title: 'Design', description: description, color: '#22998d' },
-    { type: 'progress', id: 7, title: 'Design', description: description, color: '#22998d' },
-    // { type: 'completed', id: 7, title: 'Design', description: description, color: '#22998d' },
-];
 function Project() {
-    const [projects, setProjects] = useState(PROJECT_LIST);
+    const projects = useSelector((state) => state.projects.projects);
     const todo = projects.filter((project) => project.type === 'todo');
     const progress = projects.filter((project) => project.type === 'progress');
     const completed = projects.filter((project) => project.type === 'completed');
 
+    console.log(projects);
+    const dispatch = useDispatch();
     const handleDelete = useCallback(
         (id) => {
-            const newItems = projects.filter((project) => project.id !== id);
-            setProjects(newItems);
+            dispatch(actions.deleteProject(id));
         },
         [projects],
     );
 
     const handleMove = useCallback(
         (id) => {
-            const newProjects = projects.map((p) => {
-                if (p.id === id && p.type === 'todo') {
-                    return { ...p, type: 'progress' };
-                } else if (p.id === id && p.type === 'progress') {
-                    return { ...p, type: 'completed' };
-                } else return p;
-            });
-            console.log(newProjects);
-            setProjects(newProjects);
+            dispatch(actions.moveProject(id));
         },
         [projects],
     );

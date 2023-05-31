@@ -1,68 +1,50 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Today.module.scss';
 import images from '~/assets/images';
 import { BsPlusLg, BsCheckCircleFill } from 'react-icons/bs';
 import Card from './Card';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { todayActions } from '~/store';
 const cx = classNames.bind(styles);
 
-const _tasks = [
-    {
-        title: 'Shoping',
-        description: 'Hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn ',
-        color: 'green',
-        isAddItem: false,
-    },
-    {
-        title: 'Shoping',
-        description: 'Hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn ',
-        color: 'red',
-        isAddItem: false,
-    },
-    {
-        title: 'Shoping',
-        description: 'Hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn ',
-        color: 'yellow',
-        isAddItem: false,
-    },
-    {
-        title: 'Shoping',
-        description: 'Hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn ',
-        color: 'cyan',
-        isAddItem: false,
-    },
-];
-
-const _comple_tasks = [
-    {
-        title: 'Completed',
-        description: 'Hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn ',
-        color: 'green',
-        icon: BsCheckCircleFill,
-    },
-    {
-        title: 'Completed',
-        description: 'Hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn ',
-        color: 'red',
-        icon: BsCheckCircleFill,
-    },
-    {
-        title: 'Completed',
-        description: 'Hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn hình ảnh yên ấm hạnh phúc trước mỗi bữa ăn ',
-        color: 'yellow',
-        icon: BsCheckCircleFill,
-    },
-];
 function Today() {
-    const [tasks, setTask] = useState(_tasks);
-    const handleClick = (e) => {
-        setTask((pre) => [...pre, { title: 'Shopping', description: 'Nothing', color: 'cyan', isAddItem: true }]);
+    const tasks = useSelector((state) => state.today.tasks);
+
+    const todoTask = tasks.filter((task) => task.type === 'todo');
+    const completedTask = tasks.filter((task) => task.type === 'completed');
+    const [mode, setMode] = useState(todoTask);
+    const dispatch = useDispatch();
+
+    const handleDelete = (id) => {
+        console.log(id);
+        dispatch(todayActions.deleteTask(id));
+    };
+    const handleMove = (id) => {
+        dispatch(todayActions.moveTask(id));
     };
 
-    const handleClickTasks = (e) => {
-        setTask(_tasks);
+    const isComplete = window.location.pathname === '/today/completed';
+
+    const handleSwitch = () => {
+        if (isComplete) {
+            setMode(todoTask);
+        } else {
+            setMode(completedTask);
+        }
     };
+
+    useEffect(() => {
+        if (isComplete) {
+            setMode(completedTask);
+        } else {
+            setMode(todoTask);
+        }
+    }, [tasks]);
+
+    const handleAdd = () => {};
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
@@ -76,29 +58,40 @@ function Today() {
                         to="/today"
                         end
                         className={({ isActive }) => (isActive ? cx('task-count', 'active') : cx('task-count'))}
-                        onClick={handleClickTasks}
+                        onClick={handleSwitch}
                     >
-                        <strong>73</strong>
+                        <strong>{todoTask.length}</strong>
                         <p>Created tasks</p>
                     </NavLink>
                     <NavLink
                         to="/today/completed"
                         className={({ isActive }) => (isActive ? cx('task-count', 'active') : cx('task-count'))}
-                        onClick={() => setTask(_comple_tasks)}
+                        onClick={handleSwitch}
                     >
-                        <strong>56</strong>
+                        <strong>{completedTask.length}</strong>
                         <p>Completed tasks</p>
                     </NavLink>
                 </div>
             </div>
 
             <div className={cx('content')}>
-                {tasks.map((task, index) => {
-                    return <Card key={index} task={task} icon={task.icon} isAddItem={task.isAddItem} />;
+                {mode.map((task, index) => {
+                    return (
+                        <Card
+                            key={task.id}
+                            task={task}
+                            onDelete={() => handleDelete(task.id)}
+                            onMove={() => handleMove(task.id)}
+                        />
+                    );
                 })}
-                <div className={cx('add-tool')} onClick={handleClick}>
-                    <BsPlusLg className={cx('plus-icon')} />
-                </div>
+
+                {mode.length === 0 && <p>No tasks available</p>}
+                {!isComplete && (
+                    <div className={cx('add-tool')} onClick={handleAdd}>
+                        <BsPlusLg className={cx('plus-icon')} />
+                    </div>
+                )}
             </div>
         </div>
     );

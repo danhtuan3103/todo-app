@@ -52,6 +52,7 @@
     }
 }
 .description-wrapper {
+    margin-top: 12px;
     display: flex;
     justify-content: center;
     flex: 1;
@@ -91,9 +92,25 @@
     border: none;
 }
 
+.btn-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.btn {
+    width: 200px;
+    padding: 8px 4px;
+    font-size: 1.2em;
+    border-radius: 4px;
+    background-color: var(--primary);
+    cursor: pointer;
+}
+
 @media (max-width: 739px) {
     .container {
-        height: 100vh;
+        // height: 100vh;
     }
     .description {
         width: 100%;
