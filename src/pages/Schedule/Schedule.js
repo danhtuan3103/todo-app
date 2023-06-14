@@ -50,7 +50,7 @@ const EditableP = ({ children, isEditable, setContent }) => {
 
 function Schedule() {
     const [content, setContent] = useState(null);
-    const [isEditMode, setIsEditMode] = useState(true);
+    const [isEditMode, setIsEditMode] = useState(false);
     const [name, setName] = useState('');
     const [professor, setProfessor] = useState('');
     const [time, setTime] = useState('');

@@ -4,65 +4,12 @@ import classNames from 'classnames/bind';
 import { BsPlus } from 'react-icons/bs';
 import Note from './Note';
 import uniqid from 'uniqid';
-const randomDeg = () => {
-    return Math.floor(Math.random() * 360) + 'deg';
-};
-const randomColor = () => {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
-};
+import { GOALS } from '~/assets/data/sample';
+import { randomColor, randomDeg } from '~/utils/random';
 const cx = classNames.bind(styles);
-const DATA = [
-    {
-        id: 1,
-        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        rolate: randomDeg(),
-        color: randomColor(),
-    },
-    {
-        id: 2,
-        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        rolate: randomDeg(),
-        color: randomColor(),
-    },
-    {
-        id: 3,
-        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        rolate: randomDeg(),
-        color: randomColor(),
-    },
-    {
-        id: 4,
-        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        rolate: randomDeg(),
-        color: randomColor(),
-    },
-    {
-        id: 5,
-        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        rolate: randomDeg(),
-        color: randomColor(),
-    },
-    {
-        id: 6,
-        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        rolate: randomDeg(),
-        color: randomColor(),
-    },
-    {
-        id: 7,
-        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        rolate: randomDeg(),
-        color: randomColor(),
-    },
-    {
-        id: 8,
-        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        rolate: randomDeg(),
-        color: randomColor(),
-    },
-];
+
 function Goals() {
-    const [data, setData] = useState(DATA);
+    const [data, setData] = useState(GOALS);
 
     const handleAdd = (e) => {
         setData((pre) => [

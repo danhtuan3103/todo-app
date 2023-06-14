@@ -1,5 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-import { PROJECT_LIST, TASKS, SCHEDULE } from '~/assets/data/socials';
+import { PROJECT_LIST, TASKS, SCHEDULE } from '~/assets/data/sample';
 
 const projectSlice = createSlice({
     name: 'projects',

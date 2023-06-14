@@ -1,3 +1,5 @@
+import { randomColor, randomDeg } from '~/utils/random';
+
 export const socials = [
     {
         name: 'facebook',
@@ -181,5 +183,56 @@ export const SCHEDULE = [
                 color: '#e2f8ff',
             },
         ],
+    },
+];
+
+export const GOALS = [
+    {
+        id: 1,
+        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+        rolate: randomDeg(),
+        color: randomColor(),
+    },
+    {
+        id: 2,
+        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+        rolate: randomDeg(),
+        color: randomColor(),
+    },
+    {
+        id: 3,
+        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+        rolate: randomDeg(),
+        color: randomColor(),
+    },
+    {
+        id: 4,
+        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+        rolate: randomDeg(),
+        color: randomColor(),
+    },
+    {
+        id: 5,
+        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+        rolate: randomDeg(),
+        color: randomColor(),
+    },
+    {
+        id: 6,
+        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+        rolate: randomDeg(),
+        color: randomColor(),
+    },
+    {
+        id: 7,
+        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+        rolate: randomDeg(),
+        color: randomColor(),
+    },
+    {
+        id: 8,
+        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+        rolate: randomDeg(),
+        color: randomColor(),
     },
 ];
