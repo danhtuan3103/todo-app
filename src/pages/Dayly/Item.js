@@ -91,13 +91,13 @@ function Item({ id, _time, _content, onSave = defaultFn }) {
                 value={content}
             />
 
-            {/* <div
+            <div
                 className={cx('tail')}
                 // style={{ backgroundColor: `${color}88` }}
                 onClick={(e) => handleSave(e, id, time, content)}
             >
                 {save ? 'Save' : ''}
-            </div> */}
+            </div>
         </div>
     );
 }
