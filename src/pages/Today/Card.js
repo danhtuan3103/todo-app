@@ -5,7 +5,7 @@ import styles from './Today.module.scss';
 
 import { BsFillSave2Fill, BsCheckCircleFill } from 'react-icons/bs';
 import { CgShapeCircle } from 'react-icons/cg';
-
+import { MdDelete, MdCheckBox } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { todayActions } from '~/store';
 const cx = classNames.bind(styles);
@@ -48,16 +48,26 @@ function Card({ task, onDelete, onMove }) {
     } else {
         return (
             <div className={cx('card')}>
-                <span className={cx('right-icon')}>
-                    <Icon className={cx('circle-icon')} style={{ color: task.color }} />
-                </span>
-                <h4 className={cx('title')}>{task.title}</h4>
-                <p className={cx('des')}>{task.description}</p>
+                <div className={cx('info')}>
+                    <span className={cx('right-icon')}>
+                        <Icon className={cx('circle-icon')} style={{ color: task.color }} />
+                    </span>
+                    <h4 className={cx('title')}>{task.title}</h4>
+                    <p className={cx('des')}>{task.description}</p>
+                </div>
 
                 <div className={cx('menu')}>
                     <ul>
-                        <p onClick={onDelete}>Delete</p>
-                        {task.type === 'todo' && <p onClick={onMove}>Completed</p>}
+                        {/* <p onClick={onDelete}>Delete</p>
+                        {task.type === 'todo' && <p onClick={onMove}>Completed</p>} */}
+                        <span className={cx('icon')} onClick={onDelete}>
+                            <MdDelete />
+                        </span>
+                        {task.type === 'todo' && (
+                            <span className={cx('icon')} onClick={onMove}>
+                                <MdCheckBox />
+                            </span>
+                        )}
                     </ul>
                 </div>
             </div>
