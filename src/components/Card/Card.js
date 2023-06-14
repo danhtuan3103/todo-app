@@ -7,9 +7,12 @@ import 'tippy.js/dist/tippy.css';
 
 import { ImAttachment } from 'react-icons/im';
 import styles from './Card.module.scss';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 function Card({ data, className, onDelete, onMove }) {
+    const [visible, setVisibile] = useState(false);
+
     return (
         <div className={cx('wrapper', { [className]: className })}>
             <div className={cx('header')}>
@@ -17,25 +20,27 @@ function Card({ data, className, onDelete, onMove }) {
 
                 <h3 className={cx('title')}>{data.title}</h3>
                 <Tippy
-                    hideOnClick={true}
+                    visible={visible}
                     interactive
                     offset={[0, 0]}
-                    delay={[100, 200]}
+                    onClickOutside={() => setVisibile(false)}
                     render={(attrs) => (
-                        <div className={cx('box')} tabIndex="-1" {...attrs}>
+                        <div className={cx('box')} tabIndex="-1" {...attrs} onMouseLeave={() => setVisibile(false)}>
                             <Link className={cx('tool-item')} to={`/project/${data.id}`}>
                                 See detail
                             </Link>
                             <p className={cx('tool-item')} onClick={onDelete}>
                                 Delete
                             </p>
-                            <p className={cx('tool-item')} onClick={onMove}>
-                                Move
-                            </p>
+                            {data.type !== 'completed' && (
+                                <p className={cx('tool-item')} onClick={onMove}>
+                                    Move
+                                </p>
+                            )}
                         </div>
                     )}
                 >
-                    <span className={cx('gim')}>
+                    <span className={cx('gim')} onMouseEnter={() => setVisibile(true)}>
                         <ImAttachment />
                     </span>
                 </Tippy>

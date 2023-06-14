@@ -13,6 +13,7 @@
     position: relative;
     max-height: 100%;
     flex-wrap: wrap;
+    margin-bottom: 100px;
 }
 
 .card {
@@ -36,6 +37,7 @@
         z-index: 5;
     }
 }
+
 .header {
     display: flex;
     align-items: center;
@@ -69,6 +71,15 @@
     text-rendering: optimizeLegibility;
     text-overflow: ellipsis;
     overflow: hidden;
+    outline: none;
+    border: 1px solid transparent;
+    margin: 4px;
+}
+
+.isEditable {
+    border: 1px solid #333;
+    min-height: 80%;
+    max-height: 80%;
 }
 
 .add-btn {
@@ -107,8 +118,8 @@
         list-style: none;
         padding: 4px 0;
         text-align: center;
-        transition: 1s ease;
-
+        transition: 0.2s ease;
+        font-size: 1.2rem;
         &:hover {
             background-color: #333;
         }

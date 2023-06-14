@@ -3,7 +3,7 @@ import styles from './Goals.module.scss';
 import classNames from 'classnames/bind';
 import { BsPlus } from 'react-icons/bs';
 import Note from './Note';
-
+import uniqid from 'uniqid';
 const randomDeg = () => {
     return Math.floor(Math.random() * 360) + 'deg';
 };
@@ -13,49 +13,49 @@ const randomColor = () => {
 const cx = classNames.bind(styles);
 const DATA = [
     {
-        title: 'Goal #1',
+        id: 1,
         content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
         rolate: randomDeg(),
         color: randomColor(),
     },
     {
-        title: 'Goal #2',
+        id: 2,
         content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
         rolate: randomDeg(),
         color: randomColor(),
     },
     {
-        title: 'Goal #3',
+        id: 3,
         content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
         rolate: randomDeg(),
         color: randomColor(),
     },
     {
-        title: 'Goal #4',
+        id: 4,
         content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
         rolate: randomDeg(),
         color: randomColor(),
     },
     {
-        title: 'Goal #5',
+        id: 5,
         content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
         rolate: randomDeg(),
         color: randomColor(),
     },
     {
-        title: 'Goal #1',
+        id: 6,
         content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
         rolate: randomDeg(),
         color: randomColor(),
     },
     {
-        title: 'Goal #2',
+        id: 7,
         content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
         rolate: randomDeg(),
         color: randomColor(),
     },
     {
-        title: 'Goal #3',
+        id: 8,
         content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
         rolate: randomDeg(),
         color: randomColor(),
@@ -68,18 +68,47 @@ function Goals() {
         setData((pre) => [
             ...pre,
             {
-                title: 'Goal #3',
-                content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-                rolate: randomDeg(),
+                id: uniqid(),
+                content: '.....',
+                rolate: 0,
                 color: randomColor(),
+                isAdd: true,
             },
         ]);
     };
+
+    const handleEdit = (id, content) => {
+        const newData = data.map((d) => {
+            if (d.id === id) {
+                d.content = content;
+                d.rolate = randomDeg();
+            }
+
+            return d;
+        });
+
+        console.log('Updated');
+        setData(newData);
+    };
+    const handleDelete = (id) => {
+        const newData = data.filter((d) => d.id !== id);
+        setData(newData);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('list')}>
                 {data.map((card, indx) => {
-                    return <Note key={indx} card={card} />;
+                    return (
+                        <Note
+                            key={indx}
+                            card={card}
+                            isAdd={card?.isAdd}
+                            number={indx}
+                            handleDelete={handleDelete}
+                            handleEdit={handleEdit}
+                        />
+                    );
                 })}
             </div>
             <div className={cx('add-btn')} onClick={handleAdd}>

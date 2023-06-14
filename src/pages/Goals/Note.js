@@ -2,36 +2,32 @@ import PropTypes from 'prop-types';
 import { useRef, useState, memo } from 'react';
 import styles from './Goals.module.scss';
 import classNames from 'classnames/bind';
+import Goals from './Goals';
 
 const cx = classNames.bind(styles);
 
-const CustomMenu = () => {
-    const handleDelete = (e) => {
-        e.preventDefault();
-        console.log('handleClick');
-    };
-    const handleEdit = (e) => {
-        e.preventDefault();
-        console.log('handleEdit');
-    };
+const CustomMenu = ({ onDelete, onEdit }) => {
     return (
         <div className={cx('custom-menu')}>
             <ul>
-                <li onClick={handleDelete}>Delete</li>
-                <li onClick={handleEdit}>Edit</li>
+                <li onClick={onDelete}>Delete</li>
+                <li onClick={onEdit}>Edit</li>
             </ul>
         </div>
     );
 };
-function Note({ card }) {
+function Note({ card, isAdd, number, handleDelete, handleEdit }) {
     const ref = useRef(null);
     const [show, setShow] = useState(false);
+    const [isEditable, setIsEditable] = useState(isAdd || false);
+    const [content, setContent] = useState('');
     const handleMove = (e) => {
         ref.current.style.transform = 'scale(1.6)';
     };
 
     const handleLeave = (e, deg) => {
         ref.current.style.transform = `rotate(${deg})`;
+        setShow(false);
     };
 
     const handleClick = (e) => {
@@ -39,22 +35,41 @@ function Note({ card }) {
         console.log('click');
         setShow(!show);
     };
+
+    const handleChangeEditMode = (e) => {
+        setIsEditable(true);
+    };
+
     return (
         <div
             ref={ref}
-            className={cx('card')}
+            className={cx('card', isAdd && 'sample-note')}
             style={{ transform: `rotate(${card.rolate})`, backgroundColor: card.color }}
             onMouseEnter={handleMove}
             onMouseLeave={(e) => handleLeave(e, card.rolate)}
-            onContextMenu={handleClick}
-            onClick={(e) => setShow(false)}
+            onClick={handleClick}
         >
             <span className={cx('header')} onMouseEnter={(e) => e.preventDefault()}>
                 <span className={cx('hole')}> </span>
-                <h2 className={cx('title')}>{card.title}</h2>
+                <h2 className={cx('title')}>{`Goal #${number + 1}`}</h2>
             </span>
-            <p className={cx('text')}>{card.content}</p>
-            {show ? <CustomMenu /> : <></>}
+            <p
+                className={cx('text', isEditable && 'isEditable')}
+                contentEditable={isEditable}
+                suppressContentEditableWarning
+                onBlur={() => {
+                    setIsEditable(false);
+                    handleEdit(card.id, card.content);
+                }}
+                spellCheck={false}
+            >
+                {card.content}
+            </p>
+            {show && !isEditable ? (
+                <CustomMenu onDelete={() => handleDelete(card.id)} onEdit={handleChangeEditMode} />
+            ) : (
+                <></>
+            )}
         </div>
     );
 }

@@ -31,7 +31,7 @@ function Dayly() {
         let newJob = {
             id: uniqid(),
             time: '00:00',
-            content: 'Text here ... ',
+            content: '',
         };
 
         setJobs(() => [...jobs, newJob]);

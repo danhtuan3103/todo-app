@@ -2,14 +2,19 @@ import classNames from 'classnames/bind';
 import styles from './Schedule.module.scss';
 import { useEffect, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
+import getLocation from '~/utils/getLocation';
 const cx = classNames.bind(styles);
 function Day({ day, schedules, setContent, mode }) {
     const [array, setArray] = useState([]);
 
     const arr = schedules.map((s) => {
-        return { start: s.start, end: s.end };
+        const [a, b] = getLocation(s.time);
+        return { start: a, end: b };
     });
-    console.log(arr);
+
+    arr.sort((a, b) => {
+        return a.start - b.start;
+    });
 
     const makeArray = () => {
         const result = [];
@@ -31,7 +36,7 @@ function Day({ day, schedules, setContent, mode }) {
             }
         }
 
-        for (let i = prevEnd; i < 10; i++) {
+        for (let i = prevEnd; i < 9; i++) {
             result.push({ start: i, end: i + 1 });
         }
 
@@ -41,22 +46,23 @@ function Day({ day, schedules, setContent, mode }) {
     useEffect(() => {
         if (mode) {
             setArray(makeArray());
+        } else {
+            setArray([]);
         }
-    }, []);
-
-    console.log(day, array);
+    }, [mode, schedules, day]);
 
     return (
         <div className={cx('day')}>
             <h4>{day}</h4>
             <div className={cx('events')}>
                 {schedules.map((event, index) => {
+                    const [start, end] = getLocation(event.time);
                     return (
                         <div
-                            key={index}
-                            onClick={() => setContent(event)}
+                            key={event.id}
+                            onClick={() => setContent({ day: day, ...event })}
                             style={{ backgroundColor: event.color }}
-                            className={cx('event', `start-${event.start}`, `end-${event.end}`)}
+                            className={cx('event', `start-${start}`, `end-${end}`)}
                         >
                             <h5>
                                 {event.name} - <span>{event.professor}</span>
@@ -71,7 +77,11 @@ function Day({ day, schedules, setContent, mode }) {
 
                 {array.map((a, index) => {
                     return (
-                        <div key={index} className={cx('add-btn', `start-${a.start}`, `end-${a.end}`)}>
+                        <div
+                            key={index}
+                            className={cx('add-btn', `start-${a.start}`, `end-${a.end}`)}
+                            onClick={() => setContent({ day: day, start: a.start, end: a.end })}
+                        >
                             <AiOutlinePlus className={cx('plus-icon')} />
                         </div>
                     );

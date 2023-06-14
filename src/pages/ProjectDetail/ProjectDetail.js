@@ -65,23 +65,6 @@ function ProjectDetail() {
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
-                {/* <div className={cx('tool')}>
-                    {TOOLS.map((tool, index) => {
-                        const Fn = tool.onClick;
-                        return (
-                            <button key={index} className={cx('tool-btn')} onClick={Fn}>
-                                {tool.name}
-                            </button>
-                        );
-                    })}
-                    <input
-                        ref={colorRef}
-                        className={cx('color-input')}
-                        type="color"
-                        value={color}
-                        onChange={handleOnChangeColor}
-                    />
-                </div> */}
                 <div className={cx('description-wrapper')}>
                     <textarea
                         ref={desRef}

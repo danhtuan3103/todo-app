@@ -59,12 +59,13 @@
 }
 .description {
     padding: 16px;
-    width: 70%;
-    height: 300px;
+    width: 100%;
+    min-height: 300px;
     font-size: 1.8rem;
-    border: 5px solid #e4423266;
+    border: 1px solid #e4423266;
     border-radius: 12px;
     outline: none;
+    resize: none;
 
     &:focus {
         border-color: #e4423299;
