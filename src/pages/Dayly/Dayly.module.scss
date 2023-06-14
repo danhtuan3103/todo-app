@@ -18,6 +18,8 @@
 .list {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .job {
@@ -106,7 +108,7 @@
 @media (max-width: 510px) {
     .job {
         padding: 4px 12px;
-        width: 400px;
+        width: 100%;
     }
     .time,
     .content,
