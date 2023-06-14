@@ -71,7 +71,6 @@
 .content {
     display: flex;
     flex-wrap: wrap;
-    max-height: calc(100% - 68px);
 }
 
 // card
@@ -80,7 +79,7 @@
     border-radius: 16px;
     border: 1px solid #333;
     border-top: 3px solid var(--primary);
-    max-height: 170px;
+    height: 170px;
     width: 250px;
     margin-right: 12px;
     margin-bottom: 12px;
@@ -171,7 +170,7 @@
     margin-bottom: 12px;
     width: 250px;
     padding: 8px;
-    max-height: 170px;
+    height: 170px;
     border-radius: 16px;
     border: 1px solid #333;
     border-top: 3px solid black;
@@ -216,8 +215,7 @@
     margin-right: 12px;
     margin-bottom: 12px;
     width: 70px;
-    max-height: 170px;
-
+    height: 170px;
     border-radius: 16px;
     // box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
     display: flex;
@@ -249,6 +247,7 @@
         }
     }
     .content {
+        margin-top: 12px;
         padding-bottom: 30px;
         justify-content: center;
         overflow: overlay;
@@ -258,6 +257,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 70px;
         width: 250px;
 
         .plus-icon {
@@ -274,11 +274,12 @@
     .content {
         padding: 12px;
     }
-    .text {
+    .img {
         display: none;
     }
 
     .add-tool,
+    .card-input,
     .card {
         width: 100%;
         margin-right: 0;
